@@ -4,7 +4,6 @@ variable "AWS_REGION" {
 
 variable "AMI" {
   default = "ami-0c2a1acae6667e438"
-  #default = "ami-04b9e92b5572fa0d1"
 }
 
 variable "PRIVATE_KEY_PATH" {
@@ -21,4 +20,16 @@ variable "EC2_USER" {
 
 variable "AWS_PROFILE" {
   default = "homelab"
+}
+
+variable "VPC_SUBNET_ID" {
+  default = "VPC_SUBNET_ID"
+}
+
+variable "SUBNET_ID" {
+  default = "subnet-0f5fb5ebcfc3cbee1"
+}
+
+variable "VPC_SECURITY_GROUP" {
+  default = "sg-07f6073a7cc0a2155"
 }
