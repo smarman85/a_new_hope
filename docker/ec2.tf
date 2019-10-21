@@ -1,10 +1,10 @@
 provider "aws" {
-  region = "${var.AWS_REGION}"
+  region  = "${var.AWS_REGION}"
   profile = "${var.AWS_PROFILE}"
 }
 
 resource "aws_instance" "docker1" {
-  ami = "${var.AMI}"
+  ami           = "${var.AMI}"
   instance_type = "t2.micro"
 
   #VPC info
@@ -18,25 +18,25 @@ resource "aws_instance" "docker1" {
 
   # docker installation
   provisioner "file" {
-    source = "docker.sh"
+    source      = "docker.sh"
     destination = "/tmp/docker.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/docker.sh",
-      "sudo /tmp/docker.sh"
+      "sudo /tmp/docker.sh",
     ]
   }
 
   connection {
-    user = "${var.EC2_USER}"
+    user        = "${var.EC2_USER}"
     private_key = "${file("${path.module}/../infrastructure/${var.PRIVATE_KEY_PATH}")}"
   }
 }
 
 // send public key to instance
 resource "aws_key_pair" "key-pair" {
-  key_name = "key-pair"
+  key_name   = "key-pair"
   public_key = "${file("${path.module}/../infrastructure/${var.PUBLIC_KEY_PATH}")}"
 }
