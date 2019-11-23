@@ -14,8 +14,16 @@ variable "cidr_subnet" {
   default = "10.0.1.0/24"
 }
 
-variable "cidr_access" {
+variable "cidr_ingress" {
   default = "0.0.0.0/0"
+}
+
+variable "firewall_ingress" {
+  default = ["0.0.0.0/0"]
+}
+
+variable "firewall_egress" {
+  default = ["0.0.0.0/0"]
 }
 
 variable "name" {
