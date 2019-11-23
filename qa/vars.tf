@@ -25,3 +25,27 @@ variable "name" {
 variable "public" {
   default = true
 }
+
+variable "ami_ID" {
+  default = "ami-0c2a1acae6667e438"
+}
+
+variable "instance_type" {
+  default = "t2.micro"
+}
+
+variable "ec2_user" {
+  default = "ubuntu"
+}
+
+variable "priv_key" {
+  default = "ec2-key-pair"
+}
+
+variable "pub_key" {
+  default = "ec2-key-pair.pub"
+}
+
+variable "provision_script" {
+  default = "docker.sh"
+}
