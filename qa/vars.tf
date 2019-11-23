@@ -55,5 +55,5 @@ variable "pub_key" {
 }
 
 variable "provision_script" {
-  default = "docker.sh"
+  default = "./provisioners/docker.sh"
 }
