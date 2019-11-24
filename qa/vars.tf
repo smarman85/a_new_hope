@@ -39,7 +39,8 @@ variable "ami_ID" {
 }
 
 variable "instance_type" {
-  default = "t2.micro"
+  #default = "t2.micro"
+  default = "t3.micro"
 }
 
 variable "ec2_user" {
