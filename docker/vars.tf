@@ -27,9 +27,9 @@ variable "VPC_SUBNET_ID" {
 }
 
 variable "SUBNET_ID" {
-  default = "subnet-0f5fb5ebcfc3cbee1"
+  default = "subnet-0fd37a880562df0d4"
 }
 
 variable "VPC_SECURITY_GROUP" {
-  default = "sg-07f6073a7cc0a2155"
+  default = "sg-031bf5055f231db1c"
 }

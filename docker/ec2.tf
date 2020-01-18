@@ -3,9 +3,17 @@ provider "aws" {
   profile = "${var.AWS_PROFILE}"
 }
 
+resource "aws_iam_instance_profile" "ssm_ip" {
+  name = "ssm_access_role"
+  role = "${aws_iam_role.ssm_role.name}"
+}
+
 resource "aws_instance" "docker1" {
   ami           = "${var.AMI}"
   instance_type = "t2.micro"
+
+  #role for ssm
+  iam_instance_profile = "${aws_iam_instance_profile.ssm_ip.name}"
 
   #VPC info
   subnet_id = "${var.SUBNET_ID}"
