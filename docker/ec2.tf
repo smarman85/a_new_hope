@@ -16,10 +16,12 @@ resource "aws_instance" "docker1" {
   iam_instance_profile = "${aws_iam_instance_profile.ssm_ip.name}"
 
   #VPC info
-  subnet_id = "${var.SUBNET_ID}"
+  #subnet_id = "${var.SUBNET_ID}"
+  subnet_id = "${module.vpc.subnet_id}"
 
   # Security Group
-  vpc_security_group_ids = ["${var.VPC_SECURITY_GROUP}"]
+  #vpc_security_group_ids = ["${var.VPC_SECURITY_GROUP}"]
+  vpc_security_group_ids = ["${aws_security_group.ssh-allowed.id}"]
 
   # the public ssh key
   key_name = "${aws_key_pair.key-pair.id}"

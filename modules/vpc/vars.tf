@@ -1,24 +1,24 @@
-variable "CIDR_VPC" {
-  type        = string
+variable "cidr_vpc" {
+  type        = "string"
   description = "Block of IP addresses your vpc will have access too"
 }
 
-variable "CIDR_SUBNET" {
-  type        = string
+variable "cidr_subnet" {
+  type        = "string"
   description = "Block of IP addresses in your subnet"
 }
 
-variable "CIDR_ACCESS" {
-  type        = string
+variable "cidr_access" {
+  type        = "string"
   description = "Block of IP addresses to allow access from"
 }
 
-variable "APP_NAME" {
-  type        = string
+variable "app_name" {
+  type        = "string"
   description = "Name of your application"
 }
 
-variable "PUBLIC" {
-  type        = bool
+variable "public" {
+  type        = "string"
   description = "If you want to open your subnet traffic to the internet"
 }
