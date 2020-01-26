@@ -9,5 +9,3 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get install docker-ce -y 
 
 sudo usermod -aG docker ubuntu
-
-docker run -dith test --name test -p 80:80 nginx:1.17.7
