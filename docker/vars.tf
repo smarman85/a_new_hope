@@ -3,7 +3,8 @@ variable "AWS_REGION" {
 }
 
 variable "AMI" {
-  default = "ami-0c2a1acae6667e438"
+  #default = "ami-0c2a1acae6667e438"
+  default = "ami-07ebfd5b3428b6f4d"
 }
 
 variable "PRIVATE_KEY_PATH" {
