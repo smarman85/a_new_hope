@@ -12,13 +12,18 @@ module "vpc" {
   public      = "${var.PUBLIC}"
 }
 
+data "aws_availability_zones" "all" {}
+
 resource "aws_autoscaling_group" "web" {
   name = "personal-site"
   max_size = 4
   min_size = 2
   desired_capacity = 2
-  force_delete = true
-  #vpc_zone_identifier = ["${module.vpc.subnet_id}"]
+  #availability_zones = ["${data.aws_availability_zones.all.names}"]
+  #force_delete = true
+  vpc_zone_identifier = ["${module.vpc.subnet_id}"]
+  load_balancers = ["${aws_elb.asg-lb.name}"]
+  health_check_type = "ELB"
 
   launch_template {
     id = "${aws_launch_template.web.id}"
@@ -44,7 +49,7 @@ resource "aws_launch_template" "web" {
     name = "${aws_iam_instance_profile.web.name}"
   }
   instance_type = "t2.micro"
-  #key_name = "../infrastructure/${var.PRIVATE_KEY_PATH}"
+  key_name = "${aws_key_pair.asg.id}"
   user_data = "${base64encode(file("../docker/docker.sh"))}"
   #vpc_security_group_ids = ["${aws_security_group.ssh-allowed.id}"]
   network_interfaces {
@@ -56,4 +61,47 @@ resource "aws_launch_template" "web" {
 resource "aws_iam_instance_profile" "web" {
   name = "web-ip"
   role = "${aws_iam_role.web.name}"
+}
+
+resource "aws_key_pair" "asg" {
+  key_name = "asg"
+  public_key = "${file("${path.module}/../infrastructure/${var.PUBLIC_KEY_PATH}")}"
+}
+
+## Security Group for ELB
+resource "aws_security_group" "elb" {
+  name = "terraform-example-elb"
+  vpc_id = "${module.vpc.vpcID}"
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+### Creating ELB
+resource "aws_elb" "asg-lb" {
+  name = "terraform-asg-example"
+  security_groups = ["${aws_security_group.elb.id}"]
+  #availability_zones = ["${data.aws_availability_zones.all.names}"]
+  subnets = ["${module.vpc.subnet_id}"]
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 3
+    interval = 30
+    target = "HTTP:8080/"
+  }
+  listener {
+    lb_port = 80
+    lb_protocol = "http"
+    instance_port = "8080"
+    instance_protocol = "http"
+  }
 }

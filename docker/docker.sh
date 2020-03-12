@@ -1,3 +1,9 @@
+exec 1>/var/lib/cloud/stdout.txt
+exec 2>/var/lib/cloud/stderr.txt
+
+set -o xtrace
+set -e
+
 sudo apt-get update -y
 
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common

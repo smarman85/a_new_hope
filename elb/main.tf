@@ -3,19 +3,19 @@ provider "aws" {
   profile    = "${var.AWS_PROFILE}"
 }
 data "aws_availability_zones" "all" {}
-#### Creating EC2 instance
-resource "aws_instance" "web" {
-  ami               = "${lookup(var.amis,var.region)}"
-  count             = "${var.count}"
-  #key_name               = "${var.key_name}"
-  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
-  source_dest_check = false
-  instance_type = "t2.micro"
-tags {
-    Name = "${format("web-%03d", count.index + 1)}"
-  }
-}
-### Creating Security Group for EC2
+### Creating EC2 instance
+#resource "aws_instance" "web" {
+#  ami               = "${lookup(var.amis,var.region)}"
+#  count             = "${var.count}"
+#  #key_name               = "${var.key_name}"
+#  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
+#  source_dest_check = false
+#  instance_type = "t2.micro"
+#tags {
+#    Name = "${format("web-%03d", count.index + 1)}"
+#  }
+#}
+## Creating Security Group for EC2
 resource "aws_security_group" "instance" {
   name = "terraform-example-instance"
   ingress {
