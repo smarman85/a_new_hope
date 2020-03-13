@@ -92,7 +92,7 @@ resource "aws_elb" "asg-lb" {
   #availability_zones = ["${data.aws_availability_zones.all.names}"]
   subnets = ["${module.vpc.subnet_id}"]
   health_check {
-    healthy_threshold = 1
+    healthy_threshold = 2
     unhealthy_threshold = 10
     timeout = 60
     interval = 300
