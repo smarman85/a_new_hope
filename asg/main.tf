@@ -23,7 +23,7 @@ resource "aws_autoscaling_group" "web" {
   #force_delete = true
   vpc_zone_identifier = ["${module.vpc.subnet_id}"]
   load_balancers = ["${aws_elb.asg-lb.name}"]
-  health_check_type = "ELB"
+  #health_check_type = "ELB"
 
   launch_template {
     id = "${aws_launch_template.web.id}"
@@ -92,16 +92,16 @@ resource "aws_elb" "asg-lb" {
   #availability_zones = ["${data.aws_availability_zones.all.names}"]
   subnets = ["${module.vpc.subnet_id}"]
   health_check {
-    healthy_threshold = 2
-    unhealthy_threshold = 2
-    timeout = 3
-    interval = 30
-    target = "HTTP:8080/"
+    healthy_threshold = 1
+    unhealthy_threshold = 10
+    timeout = 60
+    interval = 300
+    target = "HTTP:80/"
   }
   listener {
     lb_port = 80
     lb_protocol = "http"
-    instance_port = "8080"
+    instance_port = "80"
     instance_protocol = "http"
   }
 }
