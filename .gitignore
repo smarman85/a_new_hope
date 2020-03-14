@@ -2,3 +2,7 @@ ec2-key-pair*
 .terraform*
 terraform.tfstate*
 venv/
+*.chain
+*.key
+*.pem
+*.swp
