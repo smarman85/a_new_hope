@@ -96,12 +96,25 @@ resource "aws_elb" "asg-lb" {
     unhealthy_threshold = 10
     timeout = 60
     interval = 300
-    target = "HTTP:80/"
+    target = "TCP:8200"
   }
   listener {
     lb_port = 80
     lb_protocol = "http"
-    instance_port = "80"
-    instance_protocol = "http"
+    instance_port = "8200"
+    instance_protocol = "https"
   }
+  #health_check {
+  #  healthy_threshold = 2
+  #  unhealthy_threshold = 10
+  #  timeout = 60
+  #  interval = 300
+  #  target = "HTTP:80/"
+  #}
+  #listener {
+  #  lb_port = 80
+  #  lb_protocol = "http"
+  #  instance_port = "80"
+  #  instance_protocol = "http"
+  #}
 }

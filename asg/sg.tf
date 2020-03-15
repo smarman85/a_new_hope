@@ -27,6 +27,13 @@ resource "aws_security_group" "ssh-allowed" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port = 80
+    to_port   = 8200
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   tags {
     Name       = "ssh-allowed"
     Created_by = "terraform"
