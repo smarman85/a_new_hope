@@ -94,9 +94,9 @@ resource "aws_elb" "asg-lb" {
   health_check {
     healthy_threshold = 2
     unhealthy_threshold = 10
-    timeout = 60
-    interval = 300
-    target = "TCP:8200"
+    timeout = 2
+    interval = 5
+    target = "HTTPS:8200/v1/sys/health"
   }
   listener {
     lb_port = 80
