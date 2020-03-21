@@ -25,6 +25,7 @@ resource "aws_launch_configuration" "example" {
   image_id               = "${lookup(var.amis,var.region)}"
   instance_type          = "t2.micro"
   security_groups        = ["${aws_security_group.instance.id}"]
+  iam_instance_profile   = "${aws_iam_instance_profile.ssm_ip.name}"
   #key_name               = "${var.key_name}"
   user_data = <<-EOF
               #!/bin/bash

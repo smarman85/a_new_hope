@@ -91,19 +91,19 @@ resource "aws_elb" "asg-lb" {
   security_groups = ["${aws_security_group.elb.id}"]
   #availability_zones = ["${data.aws_availability_zones.all.names}"]
   subnets = ["${module.vpc.subnet_id}"]
-  health_check {
-    healthy_threshold = 2
-    unhealthy_threshold = 10
-    timeout = 2
-    interval = 5
-    target = "HTTPS:8200/v1/sys/health"
-  }
-  listener {
-    lb_port = 80
-    lb_protocol = "http"
-    instance_port = "8200"
-    instance_protocol = "https"
-  }
+  #health_check {
+  #  healthy_threshold = 2
+  #  unhealthy_threshold = 10
+  #  timeout = 2
+  #  interval = 5
+  #  target = "HTTPS:8200/v1/sys/health"
+  #}
+  #listener {
+  #  lb_port = 80
+  #  lb_protocol = "http"
+  #  instance_port = "8200"
+  #  instance_protocol = "https"
+  #}
   #health_check {
   #  healthy_threshold = 2
   #  unhealthy_threshold = 10
@@ -111,10 +111,17 @@ resource "aws_elb" "asg-lb" {
   #  interval = 300
   #  target = "HTTP:80/"
   #}
-  #listener {
-  #  lb_port = 80
-  #  lb_protocol = "http"
-  #  instance_port = "80"
-  #  instance_protocol = "http"
-  #}
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 10
+    timeout = 2
+    interval = 5
+    target = "HTTP:80/"
+  }
+  listener {
+    lb_port = 80
+    lb_protocol = "http"
+    instance_port = "80"
+    instance_protocol = "http"
+  }
 }
