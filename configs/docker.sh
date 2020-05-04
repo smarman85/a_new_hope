@@ -28,5 +28,4 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 
 #docker run -dith nginx --name nginx -p 80:80 nginx
-#docker run -dtih hugo --name hugo -p 80:1313 smarman/portfolio:0.0.6
-docker run -dtih gosite --name gosite -p 80:8088 smarman/gosite:0.0.0
+docker run -dtih hugo --name hugo -p 80:1313 smarman/portfolio:0.0.5

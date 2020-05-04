@@ -25,6 +25,7 @@ variable "PUBLIC" {
 variable "APP_NAME" {
   default = "docker-asg"
 }
+
 variable "PRIVATE_KEY_PATH" {
   default = "ec2-key-pair"
 }
@@ -40,4 +41,3 @@ variable "EC2_USER" {
 variable "AMI" {
   default = "ami-07ebfd5b3428b6f4d"
 }
-

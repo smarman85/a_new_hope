@@ -30,6 +30,17 @@ resource "aws_security_group" "ssh-allowed" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port = 443
+    to_port   = 443
+    protocol  = "tcp"
+
+    // This means, all ip address are allowed to ssh !
+    // Do not do it in the production.
+    // Put your office or home address in it!
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   //If you do not add this rule, you can not reach the NGINX
   ingress {
     from_port   = 80
