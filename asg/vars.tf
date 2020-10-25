@@ -1,5 +1,12 @@
 variable "AWS_REGION" {
-  default = "us-east-1"
+  #default = "us-east-1"
+  default = "us-west-1"
+  #default = "us-west-2"
+}
+
+variable "AMI" {
+  #default = "ami-07ebfd5b3428b6f4d"  # us-east-1
+  default = "ami-021809d9177640a20" # us-west-1
 }
 
 variable "AWS_PROFILE" {
@@ -36,10 +43,4 @@ variable "PUBLIC_KEY_PATH" {
 
 variable "EC2_USER" {
   default = "ubuntu"
-}
-
-variable "AMI" {
-  default = "ami-07ebfd5b3428b6f4d"  # us-east-1
-  #default = "ami-0eddd5d08379980d8" # us-west-2
-  #default = "ami-0d4e4b2239e500c6f" # us-west-1
 }

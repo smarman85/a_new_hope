@@ -35,7 +35,7 @@ resource "aws_subnet" "subnet_1" {
   vpc_id                  = aws_vpc.main_vpc.id
   cidr_block              = var.cidr_subnet
   map_public_ip_on_launch = var.public # this makes it public or private
-  availability_zone       = "us-east-1a"
+  availability_zone       = "${var.region}a"
 
   tags = {
     Name       = "${var.app_name}-subnet-1"

@@ -44,7 +44,7 @@ resource "aws_autoscaling_group" "web" {
 }
 
 resource "aws_launch_template" "web" {
-  name = "webhost"
+  name_prefix = "webhost"
 
   #ebs_optimized = true
   image_id = var.AMI
