@@ -19,6 +19,6 @@ resource "aws_iam_role" "web" {
 }
 
 resource "aws_iam_role_policy_attachment" "web" {
-  role       = "${aws_iam_role.web.name}"
+  role       = aws_iam_role.web.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }

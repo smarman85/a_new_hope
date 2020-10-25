@@ -1,12 +1,12 @@
 resource "aws_vpc" "main_vpc" {
-  cidr_block           = "${var.cidr_vpc}"
+  cidr_block           = var.cidr_vpc
   enable_dns_support   = "true" # gives you internal domain name
   enable_dns_hostnames = "true" # gives you internal host name
   enable_classiclink   = "false"
   instance_tenancy     = "default"
 
   tags = {
-    Name       = "${var.app_name}"
+    Name       = var.app_name
     Created_by = "terraform"
   }
 }

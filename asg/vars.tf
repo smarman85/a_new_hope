@@ -39,5 +39,7 @@ variable "EC2_USER" {
 }
 
 variable "AMI" {
-  default = "ami-07ebfd5b3428b6f4d"
+  default = "ami-07ebfd5b3428b6f4d"  # us-east-1
+  #default = "ami-0eddd5d08379980d8" # us-west-2
+  #default = "ami-0d4e4b2239e500c6f" # us-west-1
 }
