@@ -1,5 +1,5 @@
 resource "aws_security_group" "ssh-allowed" {
-  vpc_id = "${module.vpc.vpcID}"
+  vpc_id = module.vpc.vpcID
 
   egress {
     from_port   = 0
@@ -34,7 +34,28 @@ resource "aws_security_group" "ssh-allowed" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  ingress {
+    from_port   = 8472
+    to_port     = 8472
+    protocol    = "udp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  ingress {
+    from_port   = 6443
+    to_port     = 6443
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  ingress {
+    from_port   = 10250
+    to_port     = 10250
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  tags = {
     Name       = "ssh-allowed"
     Created_by = "terraform"
   }

@@ -1,7 +1,7 @@
 resource "aws_vpc" "main_vpc" {
   cidr_block           = var.cidr_vpc
-  enable_dns_support   = "true" # gives you internal domain name
-  enable_dns_hostnames = "true" # gives you internal host name
+  enable_dns_support   = "true"
+  enable_dns_hostnames = "true"
   enable_classiclink   = "false"
   instance_tenancy     = "default"
 
