@@ -1,5 +1,5 @@
 variable "AWS_REGION" {
-  default = "us-east-1"
+  default = "us-west-2"
 }
 
 variable "AWS_PROFILE" {
@@ -16,6 +16,14 @@ variable "CIDR_ACCESS" {
 
 variable "APP_NAME" {
   default = "homelab"
+}
+
+variable "AMI" {
+  default = "ami-0c1c0191392d93c6a"
+}
+
+variable "CIDR_SUBNET" {
+  default = "10.0.1.0/24"
 }
 
 variable "CIDR_SUBNET1" {
@@ -44,4 +52,16 @@ variable "DESIRED" {
 
 variable "INSTANCE_TYPE" {
   default = "t2.micro"
+}
+
+variable "PRIVATE_KEY_PATH" {
+  default = "ec2-key-pair"
+}
+
+variable "PUBLIC_KEY_PATH" {
+  default = "ec2-key-pair.pub"
+}
+
+variable "EC2_USER" {
+  default = "ubuntu"
 }

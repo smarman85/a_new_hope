@@ -18,7 +18,12 @@ variable "maxSize" {
   description = "Max ammount of nodes"
 }
 
-variable "subnets" {
+variable "subneta" {
+  type = string
+  description = "Subets available to the nodes"
+}
+
+variable "subnetb" {
   type = string
   description = "Subets available to the nodes"
 }

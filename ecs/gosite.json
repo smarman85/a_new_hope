@@ -1,0 +1,15 @@
+[
+  {
+    "memory" : 512,
+    "cpu": 256,
+    "essential": true,
+    "image": "smarman/gosite:0.0.7",
+    "name": "gosite",
+    "portMappings": [
+      {
+        "containerPort": 8080,
+        "hostPort": 8080
+      }
+    ]
+  }
+]

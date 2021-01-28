@@ -26,7 +26,7 @@ resource "aws_route_table" "public-crt" {
   }
 }
 
-resource "aws_route_table_association" "crta-subnet1" {
+resource "aws_route_table_association" "crta-subnet-1" {
   subnet_id      = aws_subnet.subnet_1.id
   route_table_id = aws_route_table.public-crt.id
 }
@@ -38,7 +38,7 @@ resource "aws_subnet" "subnet_1" {
   availability_zone       = "${var.region}a"
 
   tags = {
-    Name       = "${var.app_name}-subnet"
+    Name       = "${var.app_name}-subnet-1"
     Created_by = "terraform"
     "kubernetes.io/cluster/homelab" = "shared"
     NodegroupName = "homelab-homelab"

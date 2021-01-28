@@ -8,7 +8,8 @@ module "vpc" {
   cidr_vpc    = var.VPC_CIDR
   app_name    = var.APP_NAME
   cidr_access = var.CIDR_ACCESS
-  cidr_subnet = var.CIDR_SUBNET
+  cidr_subnet1 = var.CIDR_SUBNET1
+  cidr_subnet2 = var.CIDR_SUBNET2
   public      = var.PUBLIC
   region      = var.AWS_REGION
 }
@@ -20,5 +21,6 @@ module "eks_nodegroup" {
   instance_types = var.INSTANCE_TYPE
   desiredSize    = var.DESIRED
   maxSize        = var.MAX
-  subnets        = module.vpc.subnet_id
+  subneta        = module.vpc.subnet_ida
+  subnetb        = module.vpc.subnet_idb
 }

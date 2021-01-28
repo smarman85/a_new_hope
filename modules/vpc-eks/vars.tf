@@ -8,11 +8,6 @@ variable "cidr_vpc" {
   description = "Block of IP addresses your vpc will have access too"
 }
 
-#variable "cidr_subnet" {
-#  type        = string
-#  description = "Block of IP addresses in your subnet"
-#}
-
 variable "cidr_subnet1" {
   type        = string
   description = "Block of IP addresses in your subnet"
