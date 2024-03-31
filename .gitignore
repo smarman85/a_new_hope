@@ -7,3 +7,5 @@ venv/
 *.pem
 *.pub
 *.swp
+
+hidden_vars.tf

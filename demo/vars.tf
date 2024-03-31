@@ -34,15 +34,3 @@ variable "PUBLIC_KEY_PATH" {
 variable "DNS_NAME" {
   default = "seanmarman.com"
 }
-
-variable "CF_ZONE_ID" {
-  description = "value of the cloudflare zone id"
-}
-
-variable "CF_TOKEN" {
-  description = "value of the cloudflare token"
-}
-
-variable "CF_ACCOUNT_ID" {
-  description = "value of the cloudflare account id"
-}
