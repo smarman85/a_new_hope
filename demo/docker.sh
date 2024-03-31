@@ -19,7 +19,9 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 sudo add-apt-repository "deb [arch=arm64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-sudo apt-get install docker-ce -y 
+sudo apt-get install -y docker-ce \
+    jq \
+    awscli
 
 sudo usermod -aG docker ubuntu
 
@@ -27,6 +29,6 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-c
 
 sudo chmod +x /usr/local/bin/docker-compose
 
-#docker run -dith nginx --name nginx -p 80:80 nginx
-#docker run -dtih hugo --name hugo -p 80:1313 smarman/portfolio:0.0.6
-docker run -dtih gosite --name gosite -p 80:8080 smarman/go-site-gin:42b2c90e4d73f7e11709091a9a2b0f9bbe4eae2f
+aws ssm get-parameter --name /app/homelab/env --region us-west-2 | jq -r '.Parameter.Value' > /home/ubuntu/.env
+
+docker run -dith gosite --env-file /home/ubuntu/.env --name gosite -p 80:8080 smarman/go-site-gin:42b2c90e4d73f7e11709091a9a2b0f9bbe4eae2f ./goSiteGin
