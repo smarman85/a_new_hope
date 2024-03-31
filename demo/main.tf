@@ -10,6 +10,7 @@ terraform {
 provider "aws" {
   region  = var.AWS_REGION
   profile = var.AWS_PROFILE
+
   default_tags {
     tags = {
       "created_by"  = "terraform"
@@ -20,13 +21,14 @@ provider "aws" {
 }
 
 resource "aws_autoscaling_group" "demo" {
-  name_prefix        = "demo-"
+  name               = "demo-asg"
   availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"]
   desired_capacity   = 2
   max_size           = 4
   min_size           = 1
 
-  #load_balancers = [aws_lb.demo.name]
+  target_group_arns = [ aws_lb_target_group.demo.arn ]
+
   launch_template {
     id      = aws_launch_template.demo.id
     version = "1"
@@ -38,16 +40,18 @@ resource "aws_autoscaling_group" "demo" {
 }
 
 resource "aws_launch_template" "demo" {
-  name_prefix   = "demo-"
+  name          = "demo-lt"
   image_id      = var.AMI
   instance_type = var.INSTANCE_TYPE
+
+  key_name  = aws_key_pair.demo.key_name
+  user_data = base64encode(file("${path.module}/docker.sh"))
+
+  security_group_names = [ aws_security_group.demo.name ]
 
   iam_instance_profile {
     name = aws_iam_instance_profile.demo.name
   }
-
-  key_name  = aws_key_pair.demo.key_name
-  user_data = base64encode(file("${path.module}/docker.sh"))
 }
 
 resource "aws_iam_instance_profile" "demo" {
@@ -95,7 +99,12 @@ resource "aws_lb" "demo" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.demo.id]
-  subnets            = ["subnet-1d1d7c36", "subnet-2a213e53", "subnet-e3427aa8", "subnet-45739d18"]
+  subnets            = [
+    "subnet-055fbd12c979eb3f1", 
+    "subnet-0664277e014c37667",
+    "subnet-05980c1ea1627636e",
+    "subnet-01737b0ab548d9664",
+    ]
 }
 
 resource "aws_lb_target_group" "demo" {
@@ -116,15 +125,9 @@ resource "aws_lb_target_group" "demo" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "demo" {
-  target_group_arn = aws_lb_target_group.demo.arn
-  target_id        = aws_autoscaling_group.demo.id
-  port             = 80
-}
-
 resource "aws_lb_listener" "demo" {
   load_balancer_arn = aws_lb.demo.arn
-  port              = "80"
+  port              = 80
   protocol          = "HTTP"
 
   default_action {

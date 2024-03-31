@@ -5,7 +5,7 @@ variable "AWS_REGION" {
 
 variable "AWS_PROFILE" {
   description = "AWS profile"
-  default     = "homelab"
+  default     = "newlab"
 }
 
 variable "AMI" {
@@ -15,10 +15,13 @@ variable "AMI" {
 
 variable "VPCID" {
   description = "VPC ID"
-  default     = "vpc-a91193d1"
-
+  default     = "vpc-0383bf86cc653d623"
 }
 
+variable "SUBNET_IDS" {
+  description = "ids of the subnets"
+  default     = ["subnet-055fbd12c979eb3f1", "subnet-0664277e014c37667", "subnet-05980c1ea1627636e", "subnet-01737b0ab548d9664"]
+}
 variable "INSTANCE_TYPE" {
   description = "Instance type"
   default     = "t4g.small"
