@@ -15,12 +15,12 @@ variable "AMI" {
 
 variable "VPCID" {
   description = "VPC ID"
-  default     = "vpc-0383bf86cc653d623"
+  default     = "vpc-0d1fc9b3e71b3f53c"
 }
 
 variable "SUBNET_IDS" {
   description = "ids of the subnets"
-  default     = ["subnet-055fbd12c979eb3f1", "subnet-0664277e014c37667", "subnet-05980c1ea1627636e", "subnet-01737b0ab548d9664"]
+  default     = ["subnet-0abadf507a966ef94", "subnet-02761483d5106d500", "subnet-02e71f8f7e13858f8", "subnet-0941da01b13b48fa6"]
 }
 variable "INSTANCE_TYPE" {
   description = "Instance type"
