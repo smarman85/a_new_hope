@@ -31,5 +31,5 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 aws ssm get-parameter --name /app/homelab/env --region us-west-2 | jq -r '.Parameter.Value' > /home/ubuntu/.env
 
-# docker run -dith gosite --env-file /home/ubuntu/.env --name gosite -p 80:8080 smarman/go-site-gin:42b2c90e4d73f7e11709091a9a2b0f9bbe4eae2f ./goSiteGin
-docker run -dith gosite --env-file /home/ubuntu/.env --name gosite -p 80:8080 smarman/go-site-gin:26a560c0e99fd4118820e94a9e1549f1ddb78294-arm64 ./goSiteGin
+# docker run -dith gosite --env-file /home/ubuntu/.env --name gosite -p 80:8080 smarman/go-site-gin:26a560c0e99fd4118820e94a9e1549f1ddb78294-arm64 ./goSiteGin
+docker run -dith gosite --env-file /home/ubuntu/.env --name gosite -p 80:8080 smarman/go-site-gin:191e5cff68486b22a2bedcd5a4b8dc965e16b839-arm64 ./goSiteGin
