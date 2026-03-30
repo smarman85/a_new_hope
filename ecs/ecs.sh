@@ -1,0 +1,1 @@
+echo ECS_CLUSTER=homelab-ecs >> /etc/ecs/ecs.config
